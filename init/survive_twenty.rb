@@ -1,3 +1,5 @@
+#change for github homework - Maxie Hernandez
+
 user = {:name => "", :age => 0, :gender => "", :ori => "", :points => 0, :turns => 1, :cash => 0, :assets => 0.0, :revenue => 0.0, :bills => 0.0, :liab => 0.0, :stocks => {}, :bonds => {}, :RE => {}, :spouse =>{}, :children=> {}, :job=>{have: 0, name: ""},:mood => 0, :sick => [0,0,0,0,0,0]}
 turn = {:mon => "Jan", :old => 0, :pay => []}
 hold = 0
@@ -15,7 +17,7 @@ def getAge(user, turn)
 	if (age >= 20 && age < 30) then
 		user[:age] = age
 		turn[:old] = age
-	else 
+	else
 		puts "Not an applicable age, please try again."
 		getAge(user, turn)
 	end
@@ -26,11 +28,11 @@ def getGender(user)
 	puts "What is your gender? Please enter M for male, and F for female."
 	gender = gets.chomp
 	case gender
-	when "M", "Male", "m", "male" 
+	when "M", "Male", "m", "male"
 		user[:gender] = gender.capitalize
 	when "F", "Female", "f", "female"
 		user[:gender] = gender.capitalize
-	else 
+	else
 		puts "Not an applicable gender, please try again."
 		getGender(user)
 	end
@@ -91,14 +93,14 @@ def play(user, turn, hold)
 end
 
 def master_roll(user, turn, hold)
-	
+
 	puts "Turn Number #{user[:turns]}                                Month: #{turn[:mon]}    Age:  #{user[:age]}"
 	puts "\n"
 	puts "\n"
 
 	rll = roll(90)
 	if (rll > 0 && rll <= 5) then
-		
+
 		r = roll(6)
 		hold = r
 		puts "\n You are hurt! You have "
@@ -108,7 +110,7 @@ def master_roll(user, turn, hold)
 		print job(user)
 		puts "\n"
 
-		
+
 		updateTurn(user, turn)
 		updateMood(hold, user)
 
@@ -116,7 +118,7 @@ def master_roll(user, turn, hold)
 		play(user, turn, hold)
 
 	elsif (rll > 5 && rll <= 12) then
-		
+
 		r = roll(6)
 		hold = r
 		puts " \n You got into a car accident, "
@@ -136,13 +138,13 @@ def master_roll(user, turn, hold)
 		play(user, turn, hold)
 
 	elsif (rll > 12  && rll <= 20) then
-		
+
 		r = roll(6)
 		hold = r
 		if(user[:job][:have] == 0) then
-			
+
 			puts "You woke up and realized that, YOU STILL DON'T HAVE A JOB. So your now depressed."
-			
+
 			updateTurn(user, turn)
 			updateMood(hold, user)
 
@@ -150,12 +152,12 @@ def master_roll(user, turn, hold)
 			play(user, turn, hold)
 
 		elsif(user[:job][:have] >= 1) then
-			
+
 			puts "Sorry boss, you lost your job."
 			user[:job][:have] = 0
 			user[:job][:name] = ""
 			user[:revenue] = 0
-			
+
 			updateTurn(user, turn)
 			updateMood(hold, user)
 
@@ -165,13 +167,13 @@ def master_roll(user, turn, hold)
 		end
 
 	elsif (rll > 20 && rll <=35)
-		
+
 		r = roll(3)
 		hold = r
 
-		case r 
+		case r
 		when 1
-			puts "You got angry at an old, blind lady. But it was a foolish decision, because she specializes in blind kung fu. The police laugh and haul you off to jail. You had to pay $200 to post bail."	
+			puts "You got angry at an old, blind lady. But it was a foolish decision, because she specializes in blind kung fu. The police laugh and haul you off to jail. You had to pay $200 to post bail."
 			user[:cash] = user[:cash] - 200
 		when 2
 			puts "You got cut off for a parking spot...and you don't play that shit. It started out as a simple argument, but nothing that simple stays that simple. You were hauled off to jail. You had to pay $400 to post bail."
@@ -218,7 +220,7 @@ def master_roll(user, turn, hold)
 		play(user, turn, hold)
 
 	elsif (rll > 48 && rll <= 55) then
-		
+
 		puts "You found a dollar...You found a dollar...You found a dollar Hey,hey,hey, HEY!"
 		user[:cash] =  user[:cash] + 1
 
@@ -252,7 +254,7 @@ def master_roll(user, turn, hold)
 				puts "A wonderful cougar gave you 50 bucks and her room key. You left the room key...but took the 50."
 			end
 			user[:cash] = user[:cash] + 50
-			
+
 		end
 
 
@@ -263,7 +265,7 @@ def master_roll(user, turn, hold)
 		play(user, turn, hold)
 
 	elsif (rll > 70 && rll <= 80) then
-		
+
 		r = roll(4)
 		case r
 		when 1
@@ -278,7 +280,7 @@ def master_roll(user, turn, hold)
 		when 4
 			puts "You found the limitless pill. You can now do ANYTHING!!...or at least you think. Mood increased by 20 points."
 			user[:mood] = user[:mood] + 20
-		end 
+		end
 
 		updateTurn(user, turn)
 		user[:mood] = user[:mood] + 5
@@ -318,7 +320,7 @@ def updateTurn(user, turn)
 		finishGame(user, turn)
 	elsif (user[:age] <= 29 && user[:age] >= 20) then
 		changeMonth(user, turn)
-	else 
+	else
 		puts "There was an error. Logging error information right now..."
 	end
 end
@@ -365,7 +367,7 @@ def finishGame(user, turn)
 end
 
 def findSick(user, hold)
-	
+
 	case hold
 	when 1
 		if(user[:sick][0] == 1) then
@@ -405,7 +407,7 @@ def findSick(user, hold)
 			print " irritable bowl syndrome, "
 			user[:sick][4] = 1
 		end
-			
+
 
 	when 6
 		if(user[:sick][5] == 1)then
@@ -414,7 +416,7 @@ def findSick(user, hold)
 			print " a tiny cut, but your a baby, "
 			user[:sick][5] = 1
 		end
-			
+
 
 	end
 end
@@ -424,7 +426,7 @@ def returnPay(rll, r)
 		case r
 		when 1
 			return 10000
-		when 2 
+		when 2
 			return 7800
 		when 3
 			return 5900
@@ -432,7 +434,7 @@ def returnPay(rll, r)
 			return 3600
 		when 5
 			return 1000
-		when 6 
+		when 6
 			return 120
 		end
 	elsif(rll > 5 && rll <= 12)then
@@ -460,7 +462,7 @@ def returnPayment(rll, r)
 		case r
 		when 1
 			return 350
-		when 2 
+		when 2
 			return 270
 		when 3
 			return 208
@@ -468,7 +470,7 @@ def returnPayment(rll, r)
 			return 154
 		when 5
 			return 85
-		when 6 
+		when 6
 			return 8
 		end
 	elsif(rll > 5 && rll <= 12)then
@@ -507,17 +509,17 @@ def deducCash(user, hold, turn, pay, payment)
 			p = ((pay.to_i*1.1)/payment.to_i).to_int
 			turn[:pay].push(Array.new(pay, p) )
 			print " You can't afford to pay straight out. You set up a payment plan for $#{payment}."
-		else 
+		else
 			print " Would you like to pay straight out or set up a payment Plan?"
 			puts " Press 1 to pay straight out. Press 2 to setup payment plan."
 
-			choosePay(pay, payment, user, turn)	
+			choosePay(pay, payment, user, turn)
 		end
 	end
 end
 
 def choosePay(pay, payment, user, turn)
-	
+
 	a = gets.chomp
 	case a
 	when 1 , "1"
@@ -526,7 +528,7 @@ def choosePay(pay, payment, user, turn)
 		user[:bills] = user[:bills] + payment
 		p = ((pay.to_i*1.1)/payment.to_i)
 		# turn[:pay].push(Array.new({:a => payment, :b => p.to_i}))
-	else 
+	else
 		puts "Sorry, didn't understand your answer."
 		a = nil
 		choosePay(pay, payment, user)
@@ -535,7 +537,7 @@ end
 
 def acquireJob(r, user)
 	case r
-	when 1 
+	when 1
 		puts "YOU FOUND A JOB. You were hired as a McDonald's cashier. Enjoy your minimum wage."
 		puts "Do you want to keep this job? Press 1. Press 2 if you want to pass it up."
 		j = gets.chomp
@@ -546,7 +548,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 1200;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -561,7 +563,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 1600;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -576,7 +578,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 2080;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -591,7 +593,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 2880;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -606,7 +608,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 3100;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -621,7 +623,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 4160;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -636,7 +638,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 6200;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -651,7 +653,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 8320;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -666,7 +668,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 10500;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -681,7 +683,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 13000;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -696,7 +698,7 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 14200;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
@@ -711,17 +713,17 @@ def acquireJob(r, user)
 			user[:revenue] = user[:revenue] + 20000;
 		when "2"
 
-		else 
+		else
 			puts "Didn't not understand your answer. Please try again."
 			acquireJob(r, user)
 		end
-	else 
+	else
 		puts "There was an error. Logging error information..."
 	end
 end
 
 def returnRev(user)
-	
+
 	job = user[:job]["name"]
 	case job
 	when "McDonald's cashier"
@@ -748,13 +750,13 @@ def returnRev(user)
 		return 14200
 	when "CEO"
 		return 20000
-	else 
+	else
 		puts "There was an error. Logging error information..."
 	end
 end
 
 def updateMood(hold, user)
-	
+
 	case hold
 	when 1
 		user[:mood] = user[:mood] - 5
@@ -806,7 +808,7 @@ def brokenBones(hold)
 	when 6
 		print " and you broke six bones. "
 	end
-end	
+end
 
 def makePay(user, turn)
 	rev = user[:revenue]
@@ -821,7 +823,7 @@ def makePay(user, turn)
 end
 
 def calcPoints(user, turn)
-	
+
 	turn = user[:turns].to_i
 	cash = user[:cash].to_i
 	ass = user[:assets].to_i
@@ -830,7 +832,7 @@ def calcPoints(user, turn)
 	mood = user[:mood].to_i
 
 	score = ((((cash+(ass*2)+(rev * 0.5)) - ((bill -rev)*5))*(1000/(1000-mood)))/turn).to_int
-	user[:points] = score 
+	user[:points] = score
 end
 
 def whatToDo(user, turn, hold)
@@ -851,7 +853,7 @@ def whatToDo(user, turn, hold)
 end
 
 def updateStatus(user, turn, hold)
-	
+
 	puts "\n"
 	puts "\n"
 	puts "\n"
@@ -876,7 +878,7 @@ def makeLine
 end
 
 def init(user, turn, hold)
-	
+
 	puts "Welcome to surviving your twenties. The game where you play the economically hardest part of your life...over and over again! Try hard not to cry or develop a serious mental disorder."
 
 	makeLine
